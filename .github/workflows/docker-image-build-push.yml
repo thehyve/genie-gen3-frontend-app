@@ -8,7 +8,7 @@ env:
   AWS_REGION: us-east-1
   # Chose role to assume based on branch (defaults to DEV role)
   AWS_ROLE: ${{ github.ref == 'refs/heads/main' && secrets.AWS_ROLE_PROD || secrets.AWS_ROLE_DEV }}
-  ECR_REPOSITORY: 'gen3-frontend'
+  ECR_REPOSITORY: gen3-frontend
 
 permissions:
   id-token: write
@@ -38,7 +38,7 @@ jobs:
       with:
         role-to-assume: ${{ env.AWS_ROLE }}
         aws-region: ${{ env.AWS_REGION }}
-        audience: 'sts.amazonaws.com'
+        audience: sts.amazonaws.com
 
     - name: Login to Amazon ECR
       id: login-ecr
