@@ -77,7 +77,7 @@
       {
         "rightIcon": "gen3:upload",
         "href": "/Submission",
-        "name": "Browse Data"
+        "name": "Submit Data"
       },
       {
         "href": "https://docs.gen3.org/",
