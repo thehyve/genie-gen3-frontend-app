@@ -1,5 +1,5 @@
 {
-  "_definitions.yml": {
+  "_definitions.yaml": {
     "id": "_definitions",
     "PID": {
       "term": {
@@ -8,13 +8,13 @@
       "type": "string"
     }
   },
-  "_terms.yml": {
+  "_terms.yaml": {
     "id": "_terms",
     "PID": {
       "description": "A unique identifier for a unique program."
     }
   },
-  "case.yml": {
+  "case.yaml": {
     "$schema": "http://json-schema.org/draft-04/schema#",
     "id": "case",
     "title": "Case",
@@ -69,7 +69,7 @@
       }
     }
   },
-  "core_metadata_collection.yml": {
+  "core_metadata_collection.yaml": {
     "$schema": "http://json-schema.org/draft-04/schema#",
     "id": "core_metadata_collection",
     "title": "Core Metadata Collection",
@@ -104,7 +104,7 @@
       }
     }
   },
-  "omics.yml": {
+  "omics.yaml": {
     "$schema": "http://json-schema.org/draft-04/schema#",
     "id": "omics_file",
     "title": "Omics File",
@@ -153,7 +153,7 @@
       }
     }
   },
-  "program.yml": {
+  "program.yaml": {
     "$schema": "http://json-schema.org/draft-04/schema#",
     "id": "program",
     "title": "Program",
@@ -196,7 +196,7 @@
       }
     }
   },
-  "project.yml": {
+  "project.yaml": {
     "$schema": "http://json-schema.org/draft-04/schema#",
     "id": "project",
     "title": "Project",
@@ -240,5 +240,9 @@
         "description": "The program this project belongs to."
       }
     }
+  },
+  "_settings.yaml": {
+    "_dict_version": "1.0",
+    "_dict_commit": "abc123"
   }
 }
