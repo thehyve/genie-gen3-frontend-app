@@ -1,0 +1,244 @@
+{
+  "_definitions.yml": {
+    "id": "_definitions",
+    "PID": {
+      "term": {
+        "$ref": "_terms.yml#/PID"
+      },
+      "type": "string"
+    }
+  },
+  "_terms.yml": {
+    "id": "_terms",
+    "PID": {
+      "description": "A unique identifier for a unique program."
+    }
+  },
+  "case.yml": {
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "id": "case",
+    "title": "Case",
+    "type": "object",
+    "category": "administrative",
+    "description": "The collection of all data related to a specific patient or case in the context of a specific dataset or experiment.",
+    "additionalProperties": false,
+    "submittable": true,
+    "validators": null,
+    "required": [
+      "submitter_id",
+      "project_id",
+      "subject_id",
+      "sample_id"
+    ],
+    "links": [
+      {
+        "name": "project_id",
+        "backref": "cases",
+        "label": "member_of",
+        "target_type": "project",
+        "multiplicity": "many_to_one",
+        "required": true
+      }
+    ],
+    "properties": {
+      "submitter_id": {
+        "type": "string",
+        "description": "A unique identifier for the case."
+      },
+      "project_id": {
+        "type": "string",
+        "description": "The project this case belongs to."
+      },
+      "subject_id": {
+        "type": "string",
+        "description": "A unique identifier for the subject associated with this case."
+      },
+      "sample_id": {
+        "type": "string",
+        "description": "A unique identifier for the sample associated with this case."
+      },
+      "sex": {
+        "type": "string",
+        "description": "The biological sex of the subject associated.",
+        "enum": [
+          "male",
+          "female",
+          "other",
+          "unknown"
+        ]
+      }
+    }
+  },
+  "core_metadata_collection.yml": {
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "id": "core_metadata_collection",
+    "title": "Core Metadata Collection",
+    "type": "object",
+    "category": "administrative",
+    "description": "Metadata describing a specific submission and the project it belongs to.\n",
+    "additionalProperties": false,
+    "submittable": true,
+    "validators": null,
+    "required": [
+      "submitter_id",
+      "projects"
+    ],
+    "links": [
+      {
+        "name": "projects",
+        "backref": "core_metadata_collections",
+        "label": "member_of",
+        "target_type": "project",
+        "multiplicity": "many_to_one",
+        "required": true
+      }
+    ],
+    "properties": {
+      "submitter_id": {
+        "type": "string",
+        "description": "A unique identifier for the submission."
+      },
+      "projects": {
+        "type": "string",
+        "description": "The project this metadata collection belongs to."
+      }
+    }
+  },
+  "omics.yml": {
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "id": "omics_file",
+    "title": "Omics File",
+    "type": "object",
+    "category": "data_file",
+    "description": "A file containing omics data, such as genomic, transcriptomic, proteomic, or metabolomic data.\n",
+    "additionalProperties": false,
+    "submittable": true,
+    "validators": null,
+    "required": [
+      "submitter_id",
+      "case_id",
+      "file_name",
+      "file_format"
+    ],
+    "links": [
+      {
+        "name": "case_id",
+        "backref": "omics_files",
+        "label": "derived_from",
+        "target_type": "case",
+        "multiplicity": "many_to_one",
+        "required": true
+      }
+    ],
+    "properties": {
+      "submitter_id": {
+        "type": "string",
+        "description": "A unique identifier for the omics file submission."
+      },
+      "case_id": {
+        "type": "string",
+        "description": "The case this omics file belongs to."
+      },
+      "sample_id": {
+        "type": "string",
+        "description": "The sample this omics file was derived from."
+      },
+      "file_name": {
+        "type": "string",
+        "description": "The name of the omics data file."
+      },
+      "file_format": {
+        "type": "string",
+        "description": "The format of the omics data file (e.g., MAF, VCF, BAM, etc..)"
+      }
+    }
+  },
+  "program.yml": {
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "id": "program",
+    "title": "Program",
+    "type": "object",
+    "category": "administrative",
+    "description": "A top-level view of projects within data commons.   \n",
+    "additionalProperties": false,
+    "submittable": false,
+    "validators": null,
+    "systemProperties": [
+      "id"
+    ],
+    "required": [
+      "name"
+    ],
+    "uniqueKeys": [
+      [
+        "id"
+      ],
+      [
+        "name"
+      ]
+    ],
+    "links": [],
+    "properties": {
+      "type": {
+        "type": "string"
+      },
+      "program_id": {
+        "$ref": "_definitions.yml#/PID",
+        "systemAlias": "node_id"
+      },
+      "name": {
+        "type": "string",
+        "description": "The name of the program."
+      },
+      "dbgap_accession_number": {
+        "type": "string",
+        "description": "The dbgap accession number provided for the program."
+      }
+    }
+  },
+  "project.yml": {
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "id": "project",
+    "title": "Project",
+    "type": "object",
+    "category": "administrative",
+    "description": "A subdivision of a program (e.g. submissions, datasets, metadata).\n",
+    "additionalProperties": false,
+    "submittable": true,
+    "validators": null,
+    "required": [
+      "submitter_id",
+      "name",
+      "code",
+      "programs"
+    ],
+    "links": [
+      {
+        "name": "programs",
+        "backref": "projects",
+        "label": "member_of",
+        "target_type": "program",
+        "multiplicity": "many_to_one",
+        "required": true
+      }
+    ],
+    "properties": {
+      "submitter_id": {
+        "type": "string",
+        "description": "A unique identifier for the project."
+      },
+      "name": {
+        "type": "string",
+        "description": "The full name of the project."
+      },
+      "code": {
+        "type": "string",
+        "description": "A short identifier for the project."
+      },
+      "programs": {
+        "type": "string",
+        "description": "The program this project belongs to."
+      }
+    }
+  }
+}
