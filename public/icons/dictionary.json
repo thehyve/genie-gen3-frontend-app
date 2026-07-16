@@ -3,7 +3,7 @@
     "id": "_definitions",
     "UUID": {
       "term": {
-        "$ref": "_terms.yml#/UUID"
+        "$ref": "_terms.yaml#/UUID"
       },
       "type": "string"
     }
@@ -183,7 +183,7 @@
         "type": "string"
       },
       "program_id": {
-        "$ref": "_definitions.yml#/UUID",
+        "$ref": "_definitions.yaml#/UUID",
         "systemAlias": "node_id"
       },
       "name": {
