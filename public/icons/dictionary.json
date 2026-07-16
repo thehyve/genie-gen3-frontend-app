@@ -1,16 +1,16 @@
 {
   "_definitions.yaml": {
     "id": "_definitions",
-    "PID": {
+    "UUID": {
       "term": {
-        "$ref": "_terms.yml#/PID"
+        "$ref": "_terms.yml#/UUID"
       },
       "type": "string"
     }
   },
   "_terms.yaml": {
     "id": "_terms",
-    "PID": {
+    "UUID": {
       "description": "A unique identifier for a unique program."
     }
   },
@@ -183,7 +183,7 @@
         "type": "string"
       },
       "program_id": {
-        "$ref": "_definitions.yml#/PID",
+        "$ref": "_definitions.yml#/UUID",
         "systemAlias": "node_id"
       },
       "name": {
