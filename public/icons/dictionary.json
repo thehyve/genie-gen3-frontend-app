@@ -6,12 +6,68 @@
         "$ref": "_terms.yaml#/UUID"
       },
       "type": "string"
+    },
+    "datetime": {
+      "oneOf": [
+        {
+          "type": "string",
+          "format": "date-time"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "term": {
+        "$ref": "_terms.yaml#/datetime"
+      }
+    },
+    "to_one": {
+      "anyOf": [
+        {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "$ref": "#/UUID"
+              }
+            }
+          },
+          "minItems": 1,
+          "maxItems": 1
+        },
+        {
+          "$ref": "#/UUID"
+        }
+      ]
+    },
+    "to_many": {
+      "anyOf": [
+        {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "$ref": "#/UUID"
+              }
+            }
+          },
+          "minItems": 1
+        },
+        {
+          "$ref": "#/UUID"
+        }
+      ]
     }
   },
   "_terms.yaml": {
     "id": "_terms",
     "UUID": {
       "description": "A unique identifier for a unique program."
+    },
+    "datetime": {
+      "description": "A combination of a date and time in the format YYYY-MM-DDThh:mm:ss[Z|(+|-)hh:mm].\n"
     }
   },
   "case.yaml": {
@@ -26,6 +82,7 @@
     "validators": null,
     "required": [
       "submitter_id",
+      "type",
       "project_id",
       "subject_id",
       "sample_id"
@@ -41,13 +98,25 @@
       }
     ],
     "properties": {
+      "type": {
+        "type": "string"
+      },
+      "id": {
+        "$ref": "_definitions.yaml#/UUID",
+        "systemAlias": "node_id"
+      },
       "submitter_id": {
         "type": "string",
         "description": "A unique identifier for the case."
       },
+      "created_datetime": {
+        "$ref": "_definitions.yaml#/datetime"
+      },
+      "updated_datetime": {
+        "$ref": "_definitions.yaml#/datetime"
+      },
       "project_id": {
-        "type": "string",
-        "description": "The project this case belongs to."
+        "$ref": "_definitions.yaml#/to_one"
       },
       "subject_id": {
         "type": "string",
@@ -58,14 +127,13 @@
         "description": "A unique identifier for the sample associated with this case."
       },
       "sex": {
-        "type": "string",
-        "description": "The biological sex of the subject associated.",
         "enum": [
           "male",
           "female",
           "other",
           "unknown"
-        ]
+        ],
+        "description": "The biological sex of the subject associated."
       }
     }
   },
@@ -81,6 +149,7 @@
     "validators": null,
     "required": [
       "submitter_id",
+      "type",
       "projects"
     ],
     "links": [
@@ -94,17 +163,29 @@
       }
     ],
     "properties": {
+      "type": {
+        "type": "string"
+      },
+      "id": {
+        "$ref": "_definitions.yaml#/UUID",
+        "systemAlias": "node_id"
+      },
       "submitter_id": {
         "type": "string",
         "description": "A unique identifier for the submission."
       },
+      "created_datetime": {
+        "$ref": "_definitions.yaml#/datetime"
+      },
+      "updated_datetime": {
+        "$ref": "_definitions.yaml#/datetime"
+      },
       "projects": {
-        "type": "string",
-        "description": "The project this metadata collection belongs to."
+        "$ref": "_definitions.yaml#/to_one"
       }
     }
   },
-  "omics.yaml": {
+  "omics_file.yaml": {
     "$schema": "http://json-schema.org/draft-04/schema#",
     "id": "omics_file",
     "title": "Omics File",
@@ -116,9 +197,12 @@
     "validators": null,
     "required": [
       "submitter_id",
+      "type",
       "case_id",
       "file_name",
-      "file_format"
+      "data_type",
+      "data_format",
+      "data_category"
     ],
     "links": [
       {
@@ -128,16 +212,39 @@
         "target_type": "case",
         "multiplicity": "many_to_one",
         "required": true
+      },
+      {
+        "name": "core_metadata_collections",
+        "backref": "omics_files",
+        "label": "data_from",
+        "target_type": "core_metadata_collection",
+        "multiplicity": "many_to_one",
+        "required": false
       }
     ],
     "properties": {
+      "type": {
+        "type": "string"
+      },
+      "id": {
+        "$ref": "_definitions.yaml#/UUID",
+        "systemAlias": "node_id"
+      },
       "submitter_id": {
         "type": "string",
         "description": "A unique identifier for the omics file submission."
       },
+      "created_datetime": {
+        "$ref": "_definitions.yaml#/datetime"
+      },
+      "updated_datetime": {
+        "$ref": "_definitions.yaml#/datetime"
+      },
       "case_id": {
-        "type": "string",
-        "description": "The case this omics file belongs to."
+        "$ref": "_definitions.yaml#/to_one"
+      },
+      "core_metadata_collections": {
+        "$ref": "_definitions.yaml#/to_one"
       },
       "sample_id": {
         "type": "string",
@@ -147,9 +254,21 @@
         "type": "string",
         "description": "The name of the omics data file."
       },
-      "file_format": {
+      "data_type": {
         "type": "string",
-        "description": "The format of the omics data file (e.g., MAF, VCF, BAM, etc..)"
+        "description": "The type of omics data."
+      },
+      "data_format": {
+        "type": "string",
+        "description": "The format of the omics data."
+      },
+      "data_category": {
+        "type": "string",
+        "description": "The category of the omics data."
+      },
+      "object_id": {
+        "type": "string",
+        "description": "The object identifier for this file in object storage."
       }
     }
   },
@@ -159,7 +278,7 @@
     "title": "Program",
     "type": "object",
     "category": "administrative",
-    "description": "A top-level view of projects within data commons.   \n",
+    "description": "A top-level view of projects within data commons.\n",
     "additionalProperties": false,
     "submittable": false,
     "validators": null,
@@ -167,7 +286,8 @@
       "id"
     ],
     "required": [
-      "name"
+      "name",
+      "dbgap_accession_number"
     ],
     "uniqueKeys": [
       [
@@ -182,7 +302,7 @@
       "type": {
         "type": "string"
       },
-      "program_id": {
+      "id": {
         "$ref": "_definitions.yaml#/UUID",
         "systemAlias": "node_id"
       },
@@ -210,6 +330,7 @@
       "submitter_id",
       "name",
       "code",
+      "dbgap_accession_number",
       "programs"
     ],
     "links": [
@@ -223,6 +344,13 @@
       }
     ],
     "properties": {
+      "type": {
+        "type": "string"
+      },
+      "id": {
+        "$ref": "_definitions.yaml#/UUID",
+        "systemAlias": "node_id"
+      },
       "submitter_id": {
         "type": "string",
         "description": "A unique identifier for the project."
@@ -235,9 +363,16 @@
         "type": "string",
         "description": "A short identifier for the project."
       },
-      "programs": {
+      "dbgap_accession_number": {
         "type": "string",
-        "description": "The program this project belongs to."
+        "description": "The dbgap accession number provided for the project."
+      },
+      "availability_type": {
+        "type": "string",
+        "description": "The availability type of the project."
+      },
+      "programs": {
+        "$ref": "_definitions.yaml#/to_one"
       }
     }
   },
