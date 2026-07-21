@@ -59,6 +59,12 @@
           "$ref": "#/UUID"
         }
       ]
+    },
+    "project_id": {
+      "term": {
+        "$ref": "_terms.yaml#/project_id"
+      },
+      "type": "string"
     }
   },
   "_terms.yaml": {
@@ -68,6 +74,9 @@
     },
     "datetime": {
       "description": "A combination of a date and time in the format YYYY-MM-DDThh:mm:ss[Z|(+|-)hh:mm].\n"
+    },
+    "project_id": {
+      "description": "Unique ID for any specific defined piece of work that is undertaken or attempted to meet a single requirement.\n"
     }
   },
   "case.yaml": {
@@ -89,7 +98,7 @@
     ],
     "links": [
       {
-        "name": "project_id",
+        "name": "project",
         "backref": "cases",
         "label": "member_of",
         "target_type": "project",
