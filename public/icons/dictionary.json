@@ -92,13 +92,13 @@
     "required": [
       "submitter_id",
       "type",
-      "project_id",
+      "projects",
       "subject_id",
       "sample_id"
     ],
     "links": [
       {
-        "name": "project_id",
+        "name": "projects",
         "backref": "cases",
         "label": "member_of",
         "target_type": "project",
@@ -124,7 +124,7 @@
       "updated_datetime": {
         "$ref": "_definitions.yaml#/datetime"
       },
-      "project_id": {
+      "projects": {
         "$ref": "_definitions.yaml#/to_one"
       },
       "subject_id": {
