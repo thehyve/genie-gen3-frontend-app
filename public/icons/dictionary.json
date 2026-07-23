@@ -98,7 +98,7 @@
     ],
     "links": [
       {
-        "name": "project",
+        "name": "project_id",
         "backref": "cases",
         "label": "member_of",
         "target_type": "project",
@@ -335,6 +335,10 @@
     "additionalProperties": false,
     "submittable": true,
     "validators": null,
+    "systemProperties": [
+      "id",
+      "state"
+    ],
     "required": [
       "submitter_id",
       "name",
@@ -382,6 +386,17 @@
       },
       "programs": {
         "$ref": "_definitions.yaml#/to_one"
+      },
+      "state": {
+        "description": "The possible states a project can be in. All but 'open' are\nequivalent to some type of locked state.\n",
+        "default": "open",
+        "enum": [
+          "open",
+          "review",
+          "submitted",
+          "processing",
+          "closed"
+        ]
       }
     }
   },
