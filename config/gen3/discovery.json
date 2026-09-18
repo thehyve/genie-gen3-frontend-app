@@ -12,19 +12,13 @@
           "displayName": "Filters",
           "filters": [
             {
-              "key": "Study Type"
+              "key": "Dataset"
             },
             {
-              "key": "Data Type"
+              "key": "Description"
             },
             {
-              "key": "Subject Type"
-            },
-            {
-              "key": "Gender"
-            },
-            {
-              "key": "Age"
+              "key": "Cases Count"
             },
             {
               "key": "Files Count"
@@ -106,43 +100,22 @@
       "studyColumns": [
         {
           "name": "Dataset",
-          "field": "_unique_id",
+          "field": "short_name",
           "contentType": "string",
           "errorIfNotAvailable": false,
           "valueIfNotAvailable": "n/a"
         },
         {
-          "name": "Study Name",
-          "field": "full_name",
+          "name": "Description",
+          "field": "short_description",
           "contentType": "string",
           "errorIfNotAvailable": false,
           "valueIfNotAvailable": "n/a"
         },
         {
-          "name": "Study Title",
-          "field": "study_title",
-          "contentType": "string",
-          "errorIfNotAvailable": false,
-          "valueIfNotAvailable": "n/a"
-        },
-        {
-          "name": "Source",
-          "field": "source",
-          "contentType": "string",
-          "errorIfNotAvailable": false,
-          "valueIfNotAvailable": "n/a"
-        },
-        {
-          "name": "Data Files",
-          "field": "__manifest",
-          "contentType": "manifest",
-          "errorIfNotAvailable": false,
-          "valueIfNotAvailable": "n/a"
-        },
-        {
-          "name": "Subjects",
-          "field": "subjects_count",
-          "contentType": "string",
+          "name": "Cases Count",
+          "field": "cases_count",
+          "contentType": "number",
           "errorIfNotAvailable": false,
           "valueIfNotAvailable": "n/a"
         },
@@ -156,7 +129,7 @@
       ],
       "studyPreviewField": {
         "name": "Study Description",
-        "field": "study_description",
+        "field": "description",
         "contentType": "string",
         "includeName": true,
         "includeIfNotAvailable": false,
