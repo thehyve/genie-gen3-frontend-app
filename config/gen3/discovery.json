@@ -25,6 +25,9 @@
             },
             {
               "key": "Age"
+            },
+            {
+              "key": "Files Count"
             }
           ]
         },
@@ -140,6 +143,13 @@
           "name": "Subjects",
           "field": "subjects_count",
           "contentType": "string",
+          "errorIfNotAvailable": false,
+          "valueIfNotAvailable": "n/a"
+        },
+        {
+          "name": "Files Count",
+          "field": "files_count",
+          "contentType": "number",
           "errorIfNotAvailable": false,
           "valueIfNotAvailable": "n/a"
         }
