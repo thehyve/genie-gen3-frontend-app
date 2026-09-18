@@ -105,7 +105,7 @@
       "studies": [],
       "studyColumns": [
         {
-          "name": "Study ID",
+          "name": "Dataset",
           "field": "_unique_id",
           "contentType": "string",
           "errorIfNotAvailable": false,
