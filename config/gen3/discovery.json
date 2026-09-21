@@ -137,7 +137,7 @@
       },
       "simpleDetailsView": {
         "header": {
-          "field": "study_title"
+          "field": "full_name"
         },
         "downloadLinks": {
           "field": "data_download_links"
@@ -153,45 +153,15 @@
                 "includeIfNotAvailable": false
               },
               {
-                "name": "Study Title",
-                "field": "study_title",
+                "name": "Short Description",
+                "field": "short_description",
                 "contentType": "string",
                 "includeIfNotAvailable": false
               },
               {
-                "name": "Funding",
-                "field": "funding",
+                "name": "Description",
+                "field": "description",
                 "contentType": "string",
-                "includeIfNotAvailable": false
-              },
-              {
-                "name": "Source",
-                "field": "source",
-                "contentType": "string",
-                "includeIfNotAvailable": false
-              },
-              {
-                "name": "Data Files",
-                "field": "data_files_count",
-                "contentType": "string",
-                "includeIfNotAvailable": false
-              },
-              {
-                "name": "Subjects",
-                "field": "subjects_count",
-                "contentType": "string",
-                "includeIfNotAvailable": false
-              },
-              {
-                "name": "Project ID",
-                "field": "project_id",
-                "contentType": "string",
-                "includeIfNotAvailable": false
-              },
-              {
-                "name": "Link",
-                "field": "link",
-                "contentType": "link",
                 "includeIfNotAvailable": false
               }
             ]
@@ -210,7 +180,7 @@
           }
         ]
       },
-      "tagsDisplayName": "Study Filters",
+      "tagsDisplayName": "Dataset Filters",
       "tagColumnWidth": "500px",
       "minimalFieldMapping": {
         "authzField": "authz",
