@@ -89,7 +89,7 @@
       "aggregations": [
         {
           "name": "Releases",
-          "field": "_unique_id",
+          "field": "short_name",
           "type": "count"
         }
       ],
