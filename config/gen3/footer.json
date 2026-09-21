@@ -9,9 +9,9 @@
         "rows": [
           {
             "Icon": {
-              "logo": "/icons/gen3.png",
-              "width": 132,
-              "height": 60,
+              "logo": "/icons/aacr-logo.png",
+              "width": 70,
+              "height": 70,
               "description": "Gen3",
               "href": "https://gen3.org"
             }
