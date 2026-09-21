@@ -9,8 +9,8 @@
     },
     "logo": {
       "src": "/icons/genie-logo.png",
-      "width": 120,
-      "height": 60,
+      "width": 360,
+      "height": 180,
       "href": "/"
     },
     "items": [
