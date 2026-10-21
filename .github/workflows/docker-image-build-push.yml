@@ -6,8 +6,6 @@ on:
 
 env:
   AWS_REGION: us-east-1
-  # Chose role to assume based on branch (defaults to DEV role)
-  AWS_ROLE: ${{ github.ref == 'refs/heads/main' && secrets.AWS_ROLE_PROD || secrets.AWS_ROLE_DEV }}
   ECR_REPOSITORY: gen3-frontend
 
 permissions:
@@ -17,6 +15,12 @@ permissions:
 jobs:
   build-and-push:
     runs-on: ubuntu-latest
+    # Each GitHub environment holds the AWS_ROLE of its account; the image is built and pushed to
+    # the gen3-frontend ECR repository of every environment that follows this branch.
+    strategy:
+      matrix:
+        env: ${{ fromJSON(github.ref == 'refs/heads/main' && '["prod"]' || '["dev", "acc"]') }}
+    environment: ${{ matrix.env }}
     permissions:
       contents: read
       id-token: write
@@ -32,11 +36,12 @@ jobs:
         echo "SHA: ${{ github.sha }}"
         echo "Actor: ${{ github.actor }}"
         echo "Event: ${{ github.event_name }}"
+        echo "Environment: ${{ matrix.env }}"
 
     - name: Configure AWS credentials
       uses: aws-actions/configure-aws-credentials@v4
       with:
-        role-to-assume: ${{ env.AWS_ROLE }}
+        role-to-assume: ${{ secrets.AWS_ROLE }}
         aws-region: ${{ env.AWS_REGION }}
         audience: sts.amazonaws.com
 
