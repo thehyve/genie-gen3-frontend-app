@@ -51,11 +51,6 @@
   "topBar": {
     "items": [
       {
-        "rightIcon": "gen3:upload",
-        "href": "/Submission",
-        "name": "Submit Data"
-      },
-      {
         "href": "https://docs.gen3.org/",
         "name": "Documentation"
       }
