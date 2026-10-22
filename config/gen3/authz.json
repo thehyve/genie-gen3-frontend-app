@@ -1,5 +1,8 @@
 {
   "routes": {
+    "/user/(.*)": {
+      "loginRequired": false
+    },
     "*": {
       "loginRequired": true
     }
