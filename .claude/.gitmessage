@@ -1,0 +1,17 @@
+# <type>(<scope>): <description>
+#   imperative, lowercase except acronyms and names, no full stop at the end,
+#   ~50 chars (max 72)
+#
+# Spec: https://www.conventionalcommits.org
+# Types: feat fix docs refactor perf test build ci chore style(=formatting) revert
+#   temp = temporary change (custom)
+# Breaking change: add ! after the type/scope, e.g. feat(api)!: remove v1 upload endpoint
+#
+# [optional body: what changed and why, wrapped at 72 chars]
+#
+# [optional footers, one per line]
+#   BREAKING CHANGE: <what breaks and how to migrate>
+#   Refs: GENIE-123 (e.g. JIRA ticket, GitHub issue)
+#   Co-Authored-By: Name <email>
+#
+# Lines starting with # are hints and are removed from the commit message.
