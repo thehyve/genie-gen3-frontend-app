@@ -34,3 +34,17 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+/.claude/tmp/claude-md-and-skills/findings/Q1.1.md
+/.claude/tmp/claude-md-and-skills/findings/Q1.2.md
+/.claude/tmp/claude-md-and-skills/findings/Q1.5.md
+/.claude/tmp/claude-md-and-skills/findings/Q1.6.md
+/.claude/tmp/claude-md-and-skills/findings/Q2.1.md
+/.claude/tmp/claude-md-and-skills/findings/Q2.2.md
+/.claude/tmp/claude-md-and-skills/findings/Q3.md
+/.claude/tmp/claude-md-and-skills/findings/Q5.md
+/.claude/tmp/claude-md-and-skills/brief.md
+/.claude/tmp/claude-md-and-skills/log.md
+/.claude/tmp/claude-md-and-skills/plan.md
+/.claude/tmp/claude-md-and-skills/scout.md
+/.claude/tmp/claude-md-and-skills/scout-web.md
+/.claude/tmp/claude-md-and-skills/tree.md
